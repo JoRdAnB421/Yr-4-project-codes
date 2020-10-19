@@ -28,7 +28,7 @@ placement20 = np.zeros(shape = (N,5))
 placement21 = np.zeros(shape = (N,5))
 placement22 = np.zeros(shape = (N,5))
 placement23 = np.zeros(shape = (N,5))
-
+ 
 
 percentages = np.zeros(N)
 percentages2 = np.zeros(N)
