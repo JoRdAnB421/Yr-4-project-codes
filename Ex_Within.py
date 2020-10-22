@@ -3,7 +3,7 @@ import pylab as plt; import numpy as np; import pandas as pd
 import math; import json; from numpy.random import random, normal, uniform, randint
 from scipy.interpolate import interp1d
 
-N = 5      ##Change to alter the number of loops the code runs for
+N = 50       ##Change to alter the number of loops the code runs for
 
 placement = np.zeros(N)
 placement2 = np.zeros(N)
@@ -134,10 +134,10 @@ def rank22(theta, sigma, d_lum, luminosity, luminosity_probability): ## Optimise
     return np.exp(-(theta**2/(2 * (sigma)**2)))**(sigma**4) * (1/d_lum**0 * luminosity)[:, 0] * luminosity_probability**2
 
 def rank23(theta, sigma, d_lum, luminosity, luminosity_probability): ## Optimise 2
-    return np.exp(-((theta**2)**1000/(2 * (sigma)**2))) * (1/d_lum**0 * luminosity)[:, 0] * luminosity_probability**2
+    return np.exp(-((theta**2)**100/(2 * (sigma)**2))) * (1/d_lum**0 * luminosity)[:, 0] * luminosity_probability**2
 
 #################################################################
-def convert(h, m, s): #Degrees minutes seconds to degrees (More for applied code than here)
+def convert(h, m, s): #Hours minutes seconds to degrees (More for applied code than here)
     return h + (m/60) + (s/3600)
 #################################################################
 def Luminosity_Handling(magnitude): ##Converts Absolute B Magnitude to Luminosity
@@ -163,6 +163,7 @@ def spherical_convert(ra, dec): ##Test  ##Converts ra and dec to an xyz array
     return np.array([x, y, z])
 ############################################################
 def rotation(x, angle):##Test  #Rotation about the z axis
+    #need angle in radians
     
     rotation = np.array([[np.cos(angle), -np.sin(angle), 0],
                           [np.sin(angle), np.cos(angle), 0],
