@@ -3,7 +3,7 @@ import pylab as plt; import numpy as np; import pandas as pd
 import math; import json; from numpy.random import random, normal, uniform, randint
 from scipy.interpolate import interp1d
 
-N = 50       ##Change to alter the number of loops the code runs for
+N = 3       ##Change to alter the number of loops the code runs for
 
 placement = np.zeros(N)
 placement2 = np.zeros(N)
