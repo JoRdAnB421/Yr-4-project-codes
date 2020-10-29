@@ -3,7 +3,7 @@ import pylab as plt; import numpy as np; import pandas as pd
 import math; import json; from numpy.random import random, normal, uniform, randint
 from scipy.interpolate import interp1d
 
-N = 3       ##Change to alter the number of loops the code runs for
+N = 50      ##Change to alter the number of loops the code runs for
 
 placement = np.zeros(N)
 placement2 = np.zeros(N)
@@ -322,6 +322,136 @@ def axis_rotation(axis, point, angle):  ## Rotation about an axis function
     rotated_point = np.dot(rot_matrix, point)
     
     return rotated_point
+
+def Sect_sel(RA_grb, Dec_grb, err = 10):
+    '''
+    Take the simulated GRB position and find what sector it belongs to and where 
+    that position lies in relation to the centre of the sector. As the size
+    of the sectors is dictated by the error radius of the GRB position, only 
+    when the grb is directly in the centre would we only use that one sector
+    '''
+    
+    #RA around the celestial sphere varies from 0 -> 360, made an array in steps of 10 deg
+    ra =  np.arange(0, 370, err) #degrees
+
+    #Dec varies from 90 -> -90, made an array in steps of 20 deg
+    dec = np.arange(-90, 100, err) #degrees
+    
+    for i in range(len(ra)-1):
+        if ra[i] <= RA_grb <= ra[i+1]:    
+            rahold = ra[i]
+            for j in range(len(dec)-1):
+                if dec[j] <= Dec_grb <= dec[j+1]:
+                    dechold = dec[j]
+                    break
+                else:
+                    continue
+            break
+        else:
+            continue
+    
+    
+    Sec_contain = str('Sector_{0},{1}'.format(rahold, dechold))
+    
+    #grabbing the corresponding sector containing the grb
+    df_contain = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(Sec_contain)\
+                             , delimiter = ",", index_col = 0)     
+            
+    #finding which side of the ra & dec centre lines the grb lies
+    
+    #sector to the left
+    if RA_grb < ((ra[i]+ra[i+1])/2):
+        lindex = ra[i-1]
+        left_sec = str('Sector_{0},{1}'.format(lindex, dechold))
+        
+        #calling the corresponding sector csv file and appending it to other neccesary dataframes
+        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(left_sec)\
+                             , delimiter = ",", index_col = 0)
+        
+        df_contain = df_contain.append(holder)
+    
+    #sector to the right
+    elif RA_grb > ((ra[i]+ra[i+1])/2):
+        rindex = ra[i+1]
+        right_sec = str('Sector_{0},{1}'.format(rindex, dechold))
+          
+        #calling the corresponding sector csv file and appending it to other neccesary dataframes      
+        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(right_sec)\
+                             , delimiter = ",", index_col = 0)
+        
+        df_contain = df_contain.append(holder)
+        
+    #sector below
+    elif Dec_grb < ((dec[j]+dec[j+1])/2):
+        dindex = dec[j-1]
+        down_sec = str('Sector_{0},{1}'.format(rahold, dindex))
+                
+        #calling the corresponding sector csv file and appending it to other neccesary dataframes
+        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(down_sec)\
+                             , delimiter = ",", index_col = 0)
+        
+        df_contain = df_contain.append(holder)
+            
+    #sector above
+    elif RA_grb > ((ra[i]+ra[i+1])/2):
+        uindex = dec[j+1]
+        right_sec = str('Sector_{0},{1}'.format(rahold, uindex))
+                
+        #calling the corresponding sector csv file and appending it to other neccesary dataframes
+        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(right_sec)\
+                             , delimiter = ",", index_col = 0)
+        
+        df_contain = df_contain.append(holder)
+            
+    #sector left and below
+    elif RA_grb < ((ra[i]+ra[i+1])/2) and Dec_grb < ((dec[j]+dec[j+1])/2):
+        dindex = dec[j-1]
+        lindex = ra[i-1]
+        leftdown_sec = str('Sector_{0},{1}'.format(lindex, dindex))      
+                
+        #calling the corresponding sector csv file and appending it to other neccesary dataframes
+        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(leftdown_sec)\
+                             , delimiter = ",", index_col = 0)
+        
+        df_contain = df_contain.append(holder)
+            
+    #sector left and above
+    elif RA_grb < ((ra[i]+ra[i+1])/2) and Dec_grb > ((dec[j]+dec[j+1])/2):
+        uindex = dec[j+1]
+        lindex = ra[i-1]
+        leftup_sec = str('Sector_{0},{1}'.format(lindex, uindex))
+                
+        #calling the corresponding sector csv file and appending it to other neccesary dataframes
+        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(leftup_sec)\
+                             , delimiter = ",", index_col = 0)
+        
+        df_contain = df_contain.append(holder)
+            
+    #sector right and below
+    elif RA_grb > ((ra[i]+ra[i+1])/2) and Dec_grb < ((dec[j]+dec[j+1])/2):
+        dindex = dec[j-1]
+        rindex = ra[i+1]
+        rightdown_sec = str('Sector_{0},{1}'.format(rindex, dindex))
+                
+        #calling the corresponding sector csv file and appending it to other neccesary dataframes
+        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(rightdown_sec)\
+                             , delimiter = ",", index_col = 0)
+        
+        df_contain = df_contain.append(holder)
+            
+    #sector right and above
+    elif RA_grb > ((ra[i]+ra[i+1])/2) and Dec_grb > ((dec[j]+dec[j+1])/2):
+        uindex = dec[j+1]
+        rindex = ra[i+1]
+        rightup_sec = str('Sector_{0},{1}'.format(rindex, uindex))
+                
+        #calling the corresponding sector csv file and appending it to other neccesary dataframes
+        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(rightup_sec)\
+                             , delimiter = ",", index_col = 0)
+        
+        df_contain = df_contain.append(holder)
+        
+    return df_contain
 #########################################################################################
 #########################################################################################
 df_master = pd.read_csv("Data Files/GLADE_Master.csv", delimiter = ",", low_memory = False) ##GLADE_Master.csv previously defined
@@ -497,11 +627,26 @@ for i in range(N):
     print(str(i + 1), "out of " + str(N))
     print("Test galaxy: ", str(gals[i]))
     
-    ident[current_i] = 1
-    df_master["Identifier"] = ident  ## Creates a mask for identifying the host galaxy
+    #ident[current_i] = 1
+    #df_master["Identifier"] = ident  ## Creates a mask for identifying the host galaxy
     
     
-    q, t, df_sliced = reduction(abs(ra_prime[i]), dec_prime[i], df_master) ## Reduces the catalog by RA and dec
+    #q, t, df_sliced = reduction(abs(ra_prime[i]), dec_prime[i], df_master) ## Reduces the catalog by RA and dec
+    
+    ''''My new function'''
+    #selects the corresponding sectors to look through
+    df_sliced = Sect_sel(ra_prime[i], dec_prime[i])
+    #sometimes 1 of the rows gets duplicated so if that happens this will get rid of them
+    df_sliced = df_sliced.drop_duplicates(keep = 'first')
+    
+    #creates a mask to identify the host galaxy, the host having an identifier of 1
+    ident = np.zeros(df_sliced.shape[0])
+    df_sliced["Identifier"] = ident
+    df_sliced.at[current_i, 'Identifier'] = 1
+    
+    
+    
+    
     ra = np.array(df_sliced[["RA"]].values.tolist())[:, 0]
     dec = np.array(df_sliced[["dec"]].values.tolist())[:, 0]
     
