@@ -1,9 +1,13 @@
 
 import pylab as plt; import numpy as np; import pandas as pd
 import math; import json; from numpy.random import random, normal, uniform, randint
-from scipy.interpolate import interp1d
+from scipy.interpolate import interp1d; from astropy_healpix import HEALPix; 
+from astropy.coordinates import ICRS, SkyCoord; from astropy import units as u;
+from timeit import default_timer as timer
 
-N = 50      ##Change to alter the number of loops the code runs for
+start = timer()
+
+N = 1000      ##Change to alter the number of loops the code runs for
 
 placement = np.zeros(N)
 placement2 = np.zeros(N)
@@ -128,13 +132,13 @@ def rank20(theta, sigma, d_lum, luminosity, luminosity_probability): ## No Lumin
     return np.exp(-(theta**2/(2 * (sigma)**2))) * (1/d_lum * luminosity)[:, 0] * luminosity_probability**0
 
 def rank21(theta, sigma, d_lum, luminosity, luminosity_probability): ## Optimise 1
-    return np.exp(-(theta**2/(2 * (sigma)**2)))**(4) * (1/d_lum**0 * luminosity)[:, 0] * luminosity_probability**2
+    return np.exp(-(2 * theta**2/((sigma)**2))) * (1/d_lum**8 * luminosity)[:, 0] * luminosity_probability**2
 
 def rank22(theta, sigma, d_lum, luminosity, luminosity_probability): ## Optimise 2
-    return np.exp(-(theta**2/(2 * (sigma)**2)))**(sigma**4) * (1/d_lum**0 * luminosity)[:, 0] * luminosity_probability**2
+    return np.exp(-((theta**2) * (sigma**2))/(2)) * (1/d_lum**8 * luminosity)[:, 0] * luminosity_probability**2
 
 def rank23(theta, sigma, d_lum, luminosity, luminosity_probability): ## Optimise 2
-    return np.exp(-((theta**2)**100/(2 * (sigma)**2))) * (1/d_lum**0 * luminosity)[:, 0] * luminosity_probability**2
+    return np.exp(-((theta**2)**100/(2 * (sigma)**2))) * (1/d_lum**8 * luminosity)[:, 0] * luminosity_probability**2
 
 #################################################################
 def convert(h, m, s): #Hours minutes seconds to degrees (More for applied code than here)
@@ -323,135 +327,44 @@ def axis_rotation(axis, point, angle):  ## Rotation about an axis function
     
     return rotated_point
 
-def Sect_sel(RA_grb, Dec_grb, err = 10):
+def Sector_find(RA_grb, Dec_grb, err_radius):
     '''
-    Take the simulated GRB position and find what sector it belongs to and where 
-    that position lies in relation to the centre of the sector. As the size
-    of the sectors is dictated by the error radius of the GRB position, only 
-    when the grb is directly in the centre would we only use that one sector
+    Give coordinates of the grb location and an error in the position, this function
+    will use cone_search to find all sky sectors that the cone intersects and 
+    will read the corresponding csv files and compile them into one dataframe
     '''
     
-    #RA around the celestial sphere varies from 0 -> 360, made an array in steps of 10 deg
-    ra =  np.arange(0, 370, err) #degrees
-
-    #Dec varies from 90 -> -90, made an array in steps of 20 deg
-    dec = np.arange(-90, 100, err) #degrees
+    #corrects for if the rotations of the galaxy coords puts the GRB in an invalid position
+    if Dec_grb > 90:
+        x = RA_grb
+        Dec_grb = 180 - Dec_grb
+        RA_grb = RA_grb + 180
+        
+        if RA_grb > 360:
+            RA_grb = x - 180
+        
+    #making the sky coordinates
+    coords = SkyCoord(RA_grb, Dec_grb, unit = "deg")
     
-    for i in range(len(ra)-1):
-        if ra[i] <= RA_grb <= ra[i+1]:    
-            rahold = ra[i]
-            for j in range(len(dec)-1):
-                if dec[j] <= Dec_grb <= dec[j+1]:
-                    dechold = dec[j]
-                    break
-                else:
-                    continue
-            break
-        else:
-            continue
+    #finding intersecting sectors 
+    sectors = hp.cone_search_skycoord(coords, radius = err_radius*u.degree)
     
+    #making the empty dataframe
+    df_container = pd.DataFrame()
     
-    Sec_contain = str('Sector_{0},{1}'.format(rahold, dechold))
+    for i in sectors:
+        '''
+        loop over the intersecting sectors to read the files and append to 
+        the df_container
+        '''
+        
+        name = name = str("Sector_{}".format(i))
+        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(name),\
+                             delimiter = ",", index_col = 0)
+        
+        df_container = df_container.append(holder)
     
-    #grabbing the corresponding sector containing the grb
-    df_contain = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(Sec_contain)\
-                             , delimiter = ",", index_col = 0)     
-            
-    #finding which side of the ra & dec centre lines the grb lies
-    
-    #sector to the left
-    if RA_grb < ((ra[i]+ra[i+1])/2):
-        lindex = ra[i-1]
-        left_sec = str('Sector_{0},{1}'.format(lindex, dechold))
-        
-        #calling the corresponding sector csv file and appending it to other neccesary dataframes
-        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(left_sec)\
-                             , delimiter = ",", index_col = 0)
-        
-        df_contain = df_contain.append(holder)
-    
-    #sector to the right
-    elif RA_grb > ((ra[i]+ra[i+1])/2):
-        rindex = ra[i+1]
-        right_sec = str('Sector_{0},{1}'.format(rindex, dechold))
-          
-        #calling the corresponding sector csv file and appending it to other neccesary dataframes      
-        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(right_sec)\
-                             , delimiter = ",", index_col = 0)
-        
-        df_contain = df_contain.append(holder)
-        
-    #sector below
-    elif Dec_grb < ((dec[j]+dec[j+1])/2):
-        dindex = dec[j-1]
-        down_sec = str('Sector_{0},{1}'.format(rahold, dindex))
-                
-        #calling the corresponding sector csv file and appending it to other neccesary dataframes
-        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(down_sec)\
-                             , delimiter = ",", index_col = 0)
-        
-        df_contain = df_contain.append(holder)
-            
-    #sector above
-    elif RA_grb > ((ra[i]+ra[i+1])/2):
-        uindex = dec[j+1]
-        right_sec = str('Sector_{0},{1}'.format(rahold, uindex))
-                
-        #calling the corresponding sector csv file and appending it to other neccesary dataframes
-        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(right_sec)\
-                             , delimiter = ",", index_col = 0)
-        
-        df_contain = df_contain.append(holder)
-            
-    #sector left and below
-    elif RA_grb < ((ra[i]+ra[i+1])/2) and Dec_grb < ((dec[j]+dec[j+1])/2):
-        dindex = dec[j-1]
-        lindex = ra[i-1]
-        leftdown_sec = str('Sector_{0},{1}'.format(lindex, dindex))      
-                
-        #calling the corresponding sector csv file and appending it to other neccesary dataframes
-        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(leftdown_sec)\
-                             , delimiter = ",", index_col = 0)
-        
-        df_contain = df_contain.append(holder)
-            
-    #sector left and above
-    elif RA_grb < ((ra[i]+ra[i+1])/2) and Dec_grb > ((dec[j]+dec[j+1])/2):
-        uindex = dec[j+1]
-        lindex = ra[i-1]
-        leftup_sec = str('Sector_{0},{1}'.format(lindex, uindex))
-                
-        #calling the corresponding sector csv file and appending it to other neccesary dataframes
-        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(leftup_sec)\
-                             , delimiter = ",", index_col = 0)
-        
-        df_contain = df_contain.append(holder)
-            
-    #sector right and below
-    elif RA_grb > ((ra[i]+ra[i+1])/2) and Dec_grb < ((dec[j]+dec[j+1])/2):
-        dindex = dec[j-1]
-        rindex = ra[i+1]
-        rightdown_sec = str('Sector_{0},{1}'.format(rindex, dindex))
-                
-        #calling the corresponding sector csv file and appending it to other neccesary dataframes
-        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(rightdown_sec)\
-                             , delimiter = ",", index_col = 0)
-        
-        df_contain = df_contain.append(holder)
-            
-    #sector right and above
-    elif RA_grb > ((ra[i]+ra[i+1])/2) and Dec_grb > ((dec[j]+dec[j+1])/2):
-        uindex = dec[j+1]
-        rindex = ra[i+1]
-        rightup_sec = str('Sector_{0},{1}'.format(rindex, uindex))
-                
-        #calling the corresponding sector csv file and appending it to other neccesary dataframes
-        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(rightup_sec)\
-                             , delimiter = ",", index_col = 0)
-        
-        df_contain = df_contain.append(holder)
-        
-    return df_contain
+    return df_container
 #########################################################################################
 #########################################################################################
 df_master = pd.read_csv("Data Files/GLADE_Master.csv", delimiter = ",", low_memory = False) ##GLADE_Master.csv previously defined
@@ -470,6 +383,8 @@ df_cumLum = df_cumLum[["Cumulative Luminosity"]].values#                ## This 
 lum_N = np.linspace(0, df_cumLum.shape[0], df_cumLum.shape[0])
 df_dL = df_master[["Luminosity Distance"]]
 
+#using HEALPix to split the sky into equal area sectors
+hp = HEALPix(nside=16, order='ring', frame=ICRS())
 
 tests = randint(0, 2, size = N) ## If tests[i] = 0, use test galaxy, or if = 1, choose random point beyond the catalog
 dummies = random(N)
@@ -622,7 +537,7 @@ for i in range(N):
 
 ###################################################################################################
 
-    ident = np.zeros(df_master.shape[0])
+    #ident = np.zeros(df_master.shape[0])
       
     print(str(i + 1), "out of " + str(N))
     print("Test galaxy: ", str(gals[i]))
@@ -635,14 +550,24 @@ for i in range(N):
     
     ''''My new function'''
     #selects the corresponding sectors to look through
-    df_sliced = Sect_sel(ra_prime[i], dec_prime[i])
-    #sometimes 1 of the rows gets duplicated so if that happens this will get rid of them
-    df_sliced = df_sliced.drop_duplicates(keep = 'first')
+    df_sliced = Sector_find(ra_prime[i], dec_prime[i], error_radius/2)
+    df_sliced = df_sliced.rename(columns = {"Unnamed: 0.1": "Unnamed: 0"})
     
     #creates a mask to identify the host galaxy, the host having an identifier of 1
     ident = np.zeros(df_sliced.shape[0])
     df_sliced["Identifier"] = ident
-    df_sliced.at[current_i, 'Identifier'] = 1
+    df_sliced.at[current_i, "Identifier"] = 1
+    
+    #if statement resolves an issue where sometimes the host galaxy has its info corrupted
+    if math.isnan(df_sliced.loc[current_i][ "RA"]) == True:
+        '''
+        checks if the position data is corrupted, if so then it retrives the information
+        from the master file. The only thing that isn't recovered is the sector but 
+        that won't really matter, plus I can grab that if it is needed
+        '''
+        common = df_sliced.columns & df_master.columns
+        x = df_master.loc[current_i]
+        df_sliced.at[current_i, common] = list(x)
     
     
     
@@ -1118,6 +1043,9 @@ for k in range(23):
     plt.legend(loc = "best")
     plt.savefig("OmittedGalaxies_Ang_Statistic" + str(k + 1) + ".png")
     counter += 1
+
+elapsed_time = timer() - start # in seconds
+print('The code took {:.5g} s to complete'.format(elapsed_time))
 
 """
 plt.plot(L1, L2, "k", label = "Broken Power Law")
