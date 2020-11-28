@@ -1,9 +1,15 @@
 
 import pylab as plt; import numpy as np; import pandas as pd
 import math; import json; from numpy.random import random, normal, uniform, randint
-from scipy.interpolate import interp1d
+from scipy.interpolate import interp1d; from astropy_healpix import HEALPix; 
+from astropy.coordinates import ICRS, SkyCoord; from astropy import units as u;
+from timeit import default_timer as timer
 
-N = 5      ##Change to alter the number of loops the code runs for
+plt.close('all')
+
+start = timer()
+
+N = 500    ##Change to alter the number of loops the code runs for
 
 placement = np.zeros(shape = (N,5))
 placement2 = np.zeros(shape = (N,5))
@@ -324,6 +330,51 @@ def axis_rotation(axis, point, angle):  ## Rotation about an axis function
     rotated_point = np.dot(rot_matrix, point)
     
     return rotated_point
+
+def Sector_find(RA_grb, Dec_grb, err_radius):
+    '''
+    Give coordinates of the grb location and an error in the position, this function
+    will use cone_search to find all sky sectors that the cone intersects and 
+    will read the corresponding csv files and compile them into one dataframe
+    '''
+    
+    #corrects for if the rotations of the galaxy coords puts the GRB in an invalid position
+    if abs(Dec_grb) > 90:
+        x = RA_grb
+        parity = Dec_grb/abs(Dec_grb)
+        
+        Dec_grb = (180 - abs(Dec_grb))*parity
+        
+        RA_grb = RA_grb + 180
+        
+        if RA_grb > 360:
+            RA_grb = x - 180
+    
+    elif RA_grb < 0:
+        RA_grb = 360 + RA_grb
+        
+    #making the sky coordinates
+    coords = SkyCoord(RA_grb, Dec_grb, unit = "deg")
+    
+    #finding intersecting sectors 
+    sectors = hp.cone_search_skycoord(coords, radius = err_radius*u.degree)
+    
+    #making the empty dataframe
+    df_container = pd.DataFrame()
+    
+    for i in sectors:
+        '''
+        loop over the intersecting sectors to read the files and append to 
+        the df_container
+        '''
+        
+        name = name = str("Sector_{}".format(i))
+        holder = pd.read_csv("Data Files/GLADE_Sectioned/{}.csv".format(name),\
+                             delimiter = ",", index_col = 0)
+        
+        df_container = df_container.append(holder)
+    
+    return df_container
 #########################################################################################
 #########################################################################################
 df_master = pd.read_csv("Data Files/GLADE_Master.csv", delimiter = ",", low_memory = False) ##GLADE_Master.csv previously defined
@@ -342,6 +393,8 @@ df_cumLum = df_cumLum[["Cumulative Luminosity"]].values#                ## This 
 lum_N = np.linspace(0, df_cumLum.shape[0], df_cumLum.shape[0])
 df_dL = df_master[["Luminosity Distance"]]
 
+#using HEALPix to split the sky into equal area sectors
+hp = HEALPix(nside=16, order='ring', frame=ICRS())
 
 tests = randint(0, 2, size = N) ## If tests[i] = 0, use test galaxy, or if = 1, choose random point beyond the catalog
 dummies = random(N)
