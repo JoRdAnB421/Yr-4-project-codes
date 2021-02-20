@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Feb  3 16:55:25 2021
+Created on Mon Feb 15 17:40:56 2021
 @author: Jordan
-Automating the rank production
+Running specific Ranking statistics for various reasons
 """
 
 import pylab as plt; import numpy as np; import pandas as pd
@@ -299,6 +299,7 @@ def rank(theta, sigma, d_lum, luminosity, luminosity_probability, n1, n2, n3, n4
     return np.exp(-((n1*theta**2)/(2 * (sigma)**2))) *(1/d_lum**n2 * luminosity**n3)[:, 0] * luminosity_probability**n4
 
 #%%
+
 start = timer()
 
 df_master = pd.read_csv("Data Files/GLADE_Master_comma_100Mpc.csv", delimiter = ",", low_memory = False) ##GLADE_Master.csv previously defined
@@ -490,6 +491,7 @@ elapsed_time = timer() - start # in seconds
 print('Simulating the inside and outside GRBs took {:.4g} minutes'.format(elapsed_time/60))
 
 #%%
+
 '''
 This section will start with some intial conditions for the powers of the terms
 and then vary them all a little bit to see if that produces a better Ranking 
@@ -499,14 +501,10 @@ Statistic.
 start = timer()
 
 #sets the number of different combinations of powers to test
-Num = 20
+Num = 50
 
-#sets the initial conditions of the powers (set to 1 for now)
-powers = np.zeros((Num+1, 4), dtype = float)
-powers[0] = np.array([1, 1, 1, 1], dtype = float)
-
-#sets the amount they are will try and change at each step.
-sigma = np.array([10, 10, 10, 10], dtype = float)
+#sets what powers you want to use
+powers = [1, 1, 1, 1]
 
 #I want to measure for various different styles of ranking and so this defines those types
 names = np.array(["Max Rank", "Sum Ranks", "Top 5 Avg"], dtype = str)    
@@ -515,281 +513,239 @@ Ranking_holder = pd.DataFrame(columns = names, index = range(N))
 #this is the names for the outside GRBs
 Ranking_holder_out = pd.DataFrame(columns = names, index = range(N))
 
-
-
 #setting up a dataframe to store the Best ranks
 column_names = ["Rank Type", "Distinction", "Cutoff Value", "a", "b", "c", "d", "Mean Placement of Host"]
-Iterative_rank = pd.DataFrame(index = range(Num+1), columns = column_names)
+Iterative_rank = pd.DataFrame(index = range(1), columns = column_names)
 
-#initial conditions These are established from the Specific Rankings python file
-inital = ["Top 5 Avg", 0.34, 2e6, *powers[0], 0.341]
-Iterative_rank.loc[0] = inital
+#a holder for any faults
+no_se_func = []
+
+#keeps track of how well placed the host galaxies were
+placement = np.zeros(N)
+percentages = np.zeros(N)
 
 count = 0
-for j in range(Num):
+for i in range(N):
+    
     '''
-    this for loop runs over the different combinations of powers
+    The first part of this loop will work on the given ranking statistic
+    for the 1000 GRBs inside the sphere.
     '''
-    Trigger = False
-    #a holder for any faults
-    no_se_func = []
+    current_i = indices.index(gals[i])
     
-    #keeps track of how well placed the host galaxies were
-    placement = np.zeros(N)
-    percentages = np.zeros(N)
+    #selects the corresponding sectors to look through
+    df_sliced = Sector_find_reduced(ra_prime[i], dec_prime[i], error_radius)
+    df_sliced = df_sliced.rename(columns = {"Unnamed: 0.1": "Unnamed: 0"})
     
-    #using the current powers and defining some potential parameters
-    current_power = powers[j]
+    #creates a mask to identify the host galaxy, the host having an identifier of 1
+    ident = np.zeros(df_sliced.shape[0])
+    df_sliced["Identifier"] = ident
+    df_sliced.at[current_i, "Identifier"] = 1
     
-    #randomly varying the each individual power
-    p1 = np.random.randint(-sigma[0], sigma[0])
-    p2 = np.random.randint(-sigma[1], sigma[1])
-    p3 = np.random.randint(-sigma[2], sigma[2])
-    p4 = np.random.randint(-sigma[3], sigma[3])
-    
-    Dpow = np.array([p1, p2, p3, p4], dtype = float)
-    
-    #creating potential powers to be tested
-    potential_powers = current_power + Dpow
-    
-    for i in range(N):
-        
+    #if statement resolves an issue where sometimes the host galaxy has its info corrupted
+    if math.isnan(df_sliced.loc[current_i][ "RA"]) == True:
         '''
-        The first part of this loop will work on the given ranking statistic
-        for the 1000 GRBs inside the sphere.
+        checks if the position data is corrupted, if so then it retrives the information
+        from the master file. The only thing that isn't recovered is the sector but 
+        that won't really matter, plus I can grab that if it is needed
         '''
-        current_i = indices.index(gals[i])
-        
-        #selects the corresponding sectors to look through
-        df_sliced = Sector_find_reduced(ra_prime[i], dec_prime[i], error_radius)
-        df_sliced = df_sliced.rename(columns = {"Unnamed: 0.1": "Unnamed: 0"})
-        
-        #creates a mask to identify the host galaxy, the host having an identifier of 1
-        ident = np.zeros(df_sliced.shape[0])
-        df_sliced["Identifier"] = ident
-        df_sliced.at[current_i, "Identifier"] = 1
-        
-        #if statement resolves an issue where sometimes the host galaxy has its info corrupted
-        if math.isnan(df_sliced.loc[current_i][ "RA"]) == True:
-            '''
-            checks if the position data is corrupted, if so then it retrives the information
-            from the master file. The only thing that isn't recovered is the sector but 
-            that won't really matter, plus I can grab that if it is needed
-            '''
-            common = df_sliced.columns & df_master.columns
-            x = df_master.loc[current_i]
-            df_sliced.at[current_i, common] = list(x)
-        
-        #####################################################################
-        #taking the angular position of the galaxies
-        ra = np.array(df_sliced[["RA"]].values.tolist())[:, 0]
-        dec = np.array(df_sliced[["dec"]].values.tolist())[:, 0]
-        
-        #finding the luminosity of the galaxies 
-        Luminosity = np.array(df_sliced[["B Luminosity"]].values.tolist()) #Luminosity_Handling(np.array(df_sliced[["Absolute B Magnitude"]].values.tolist())) ## Converts A    
-        dl = np.array(df_sliced[["Luminosity Distance"]].values.tolist())    
-        
-        #finding the luminosity probability of this GRB 
-        lum_prob, SGR_test = L_func(received_luminosity[i], c, dl) ##Uses the luminosity function to calculate probabilities
-        df_sliced["Luminosity Probability"] = lum_prob
-        df_sliced["SGR flag"] = SGR_test
-        #####################################################################
-        
-        #some work on finding the angular distance of this GRB to the galaxies which are in the sectors
-        angular_distaance = np.zeros(df_sliced.shape[0])
-        
-        for k in range(df_sliced.shape[0]):
-            angular_distaance[k] = Ang_Dist(ra[k], ra_prime[i], dec[k], dec_prime[i])
-      
-        id_check = [i for i, val in enumerate(angular_distaance) if math.isnan(val) == True]
-        
-        for k in range(len(id_check)):
-            angular_distaance[int(id_check[k])] = Ang_Dist(ra_prime[i], testr, dec_prime[i], testd)
-        
-        #keeping track of the angular distance values
-        df_sliced["Angular Distance"] = angular_distaance
-        
-        #####################################################################
-        #using the proposed ranking statistic and storing it 
-        ranking = rank(angular_distaance, error_radius, dl, Luminosity, lum_prob, *potential_powers)  ## Uses defined ranking statistic
-        df_sliced["Rank"] = ranking
+        common = df_sliced.columns & df_master.columns
+        x = df_master.loc[current_i]
+        df_sliced.at[current_i, common] = list(x)
     
-        #finding values for maximum rank and rank summation etc
-        Ranking_holder.loc[i, "Max Rank"] = max(ranking)
-        Ranking_holder.loc[i, "Sum Ranks"] = np.sum(ranking)
-        
-        x = -np.sort(-ranking)
-        Ranking_holder.loc[i, "Top 5 Avg"] = np.mean(x[:5])
-        ######################################################################
-        
-        fin_ra = np.asarray(df_sliced[["RA"]].values.tolist()); fin_dec = np.asarray(df_sliced[["dec"]].values.tolist())
-        ## Storing values and extending the reduced catalog
-        
-        df_sliced = (pd.DataFrame.sort_values(df_sliced, by = ["Rank"], ascending = False)) ## Orders resultant sliced array
-        
-        idi = df_sliced[["Identifier"]].values.tolist() ##Mask handling to check for values
-        mask_check = [i for i, val in enumerate(idi) if val == [1]]
-        
-        Luminosity =  np.asarray(Luminosity)
+    #####################################################################
+    #taking the angular position of the galaxies
+    ra = np.array(df_sliced[["RA"]].values.tolist())[:, 0]
+    dec = np.array(df_sliced[["dec"]].values.tolist())[:, 0]
     
-        if len(mask_check) == 0:
-            print("Did not place\n\n\n")
-            next
-        else:
-            length = len(idi) + 1
-            
-            placement[i] = mask_check[0] + 1; length = len(idi) + 1
-        
-            percentages[i] = placement[i]/length
-        
-        #####################################################################
-        #checking for faults
-        faulty[i, 0] = df_master[["RA"]].values.tolist()[current_i][0]      #ra of galaxy
-        faulty[i, 1] = ra_prime[i]                                          #ra of grb
-        faulty[i, 2] = df_master[["dec"]].values.tolist()[current_i][0]     #dec of galaxy
-        faulty[i, 3] = dec_prime[i]                                         #dec of grb
-        
-        if math.isnan(rank_host[i]) == True:    
-            faulty[i, 4] = 1 #Mask
-            no_se_func.append(i)
-            #break
-        
-        else:
-            faulty[i, 4] = 0 #Mask
-            next
-            
-        
-        #####################################################################
-        '''
-        This is the second part of the loop which will run for the 1000 outside 
-        GRBs
-        '''
-        #selects the corresponding sectors to look through
-        df_sliced_out = Sector_find_reduced(ra_prime_out[i], dec_prime_out[i], error_radius)
-        df_sliced_out = df_sliced_out.rename(columns = {"Unnamed: 0.1": "Unnamed: 0"})
-         
-        if df_sliced_out.empty == True:
-            print("No Galaxies within the error radius of {} found assume it must have come from outside the sphere")
-            Ranking_holder_out.loc[i] = [0, 0, 0]
-            count += 1
-            continue
-        
-        #selecting the galaxy RA and Dec
-        ra_out = np.array(df_sliced_out[["RA"]].values.tolist())[:, 0]
-        dec_out = np.array(df_sliced_out[["dec"]].values.tolist())[:, 0]
-        
-        #collecting the luminosities and lum probabilities
-        Luminosity_out = np.array(df_sliced_out[["B Luminosity"]].values.tolist()) #Luminosity_Handling(np.array(df_sliced[["Absolute B Magnitude"]].values.tolist())) ## Converts A    
-        dl_out = np.array(df_sliced_out[["Luminosity Distance"]].values.tolist())    
-        
-        lum_prob_out, SGR_test_out = L_func(received_luminosity_out[i], c, dl_out) ##Uses the luminosity function to calculate probabilities
-        df_sliced_out["Luminosity Probability"] = lum_prob_out
-        df_sliced_out["SGR flag"] = SGR_test_out
-        
-        #sorting out the angular distances 
-        angular_distaance_out = np.zeros(df_sliced_out.shape[0])
-        
-        
-        for k in range(df_sliced_out.shape[0]):
-            angular_distaance_out[k] = Ang_Dist(ra_out[k], ra_prime_out[i], dec_out[k], dec_prime_out[i])
-        
-        
-        df_sliced_out["Angular Distance"] = angular_distaance_out
+    #finding the luminosity of the galaxies 
+    Luminosity = np.array(df_sliced[["B Luminosity"]].values.tolist()) #Luminosity_Handling(np.array(df_sliced[["Absolute B Magnitude"]].values.tolist())) ## Converts A    
+    dl = np.array(df_sliced[["Luminosity Distance"]].values.tolist())    
+    
+    #finding the luminosity probability of this GRB 
+    lum_prob, SGR_test = L_func(received_luminosity[i], c, dl) ##Uses the luminosity function to calculate probabilities
+    df_sliced["Luminosity Probability"] = lum_prob
+    df_sliced["SGR flag"] = SGR_test
+    #####################################################################
+    
+    #some work on finding the angular distance of this GRB to the galaxies which are in the sectors
+    angular_distaance = np.zeros(df_sliced.shape[0])
+    
+    for k in range(df_sliced.shape[0]):
+        angular_distaance[k] = Ang_Dist(ra[k], ra_prime[i], dec[k], dec_prime[i])
+  
+    id_check = [i for i, val in enumerate(angular_distaance) if math.isnan(val) == True]
+    
+    for k in range(len(id_check)):
+        angular_distaance[int(id_check[k])] = Ang_Dist(ra_prime[i], testr, dec_prime[i], testd)
+    
+    #keeping track of the angular distance values
+    df_sliced["Angular Distance"] = angular_distaance
+    
+    #####################################################################
+    #using the proposed ranking statistic and storing it 
+    ranking = rank(angular_distaance, error_radius, dl, Luminosity, lum_prob, *powers)  ## Uses defined ranking statistic
+    df_sliced["Rank"] = ranking
 
-        ####################################################################
-        #defining the ranking statistic and finding the various values
-        ranking_out = rank(angular_distaance_out, error_radius, dl_out, Luminosity_out, lum_prob_out, *potential_powers)  ## Uses defined ranking statistic
-        df_sliced_out["Rank"] = ranking_out
+    #finding values for maximum rank and rank summation etc
+    Ranking_holder.loc[i, "Max Rank"] = max(ranking)
+    Ranking_holder.loc[i, "Sum Ranks"] = np.sum(ranking)
     
-        Ranking_holder_out.loc[i, "Max Rank"] = max(ranking_out)
-        Ranking_holder_out.loc[i, "Sum Ranks"] = np.sum(ranking_out)
+    x = -np.sort(-ranking)
+    Ranking_holder.loc[i, "Top 5 Avg"] = np.mean(x[:5])
+    ######################################################################
+    
+    fin_ra = np.asarray(df_sliced[["RA"]].values.tolist()); fin_dec = np.asarray(df_sliced[["dec"]].values.tolist())
+    ## Storing values and extending the reduced catalog
+    
+    df_sliced = (pd.DataFrame.sort_values(df_sliced, by = ["Rank"], ascending = False)) ## Orders resultant sliced array
+    
+    idi = df_sliced[["Identifier"]].values.tolist() ##Mask handling to check for values
+    mask_check = [i for i, val in enumerate(idi) if val == [1]]
+    
+    Luminosity =  np.asarray(Luminosity)
+
+    if len(mask_check) == 0:
+        print("Did not place\n\n\n")
+        next
+    else:
+        length = len(idi) + 1
         
-        x = -np.sort(-ranking_out)
-        Ranking_holder_out.loc[i, "Top 5 Avg"] = np.mean(x[:5])
-        #####################################################################
+        placement[i] = mask_check[0] + 1; length = len(idi) + 1
     
-        df_sliced_out = (pd.DataFrame.sort_values(df_sliced_out, by = ["Rank"], ascending = False)) ## Orders resultant sliced array
+        percentages[i] = placement[i]/length
     
-    print("The Ranking Statistic has been completed on all inside and outside GRBs.")
+    #####################################################################
+    #checking for faults
+    faulty[i, 0] = df_master[["RA"]].values.tolist()[current_i][0]      #ra of galaxy
+    faulty[i, 1] = ra_prime[i]                                          #ra of grb
+    faulty[i, 2] = df_master[["dec"]].values.tolist()[current_i][0]     #dec of galaxy
+    faulty[i, 3] = dec_prime[i]                                         #dec of grb
     
-    #This records how each statistic placed the host galaxy so that there effectiveness can be compared
-    mean_host_place = np.mean(percentages)
+    if math.isnan(rank_host[i]) == True:    
+        faulty[i, 4] = 1 #Mask
+        no_se_func.append(i)
+        #break
     
+    else:
+        faulty[i, 4] = 0 #Mask
+        next
+        
     
+    #####################################################################
     '''
-    This last part of the loop is going to check if the distinction level between
-    the inside GRBs and outside GRBs is bettered for these new proposed ranking
-    when considering the three ranking values Max Rank, Sum Ranks and top 5 avg Rank values.
-    
-    If the distinction level is bettered outside to inside GRBs is reached then, that ranking 
-    stat will be saved and the powers on its components will be become the new intial 
-    conditions for the next change
+    This is the second part of the loop which will run for the 1000 outside 
+    GRBs
     '''
+    #selects the corresponding sectors to look through
+    df_sliced_out = Sector_find_reduced(ra_prime_out[i], dec_prime_out[i], error_radius)
+    df_sliced_out = df_sliced_out.rename(columns = {"Unnamed: 0.1": "Unnamed: 0"})
     
-    distinction_level = Iterative_rank.loc[j]["Distinction"]
+    if df_sliced_out.empty == True:
+        print("No Galaxies within the error radius of {} found assume it must have come from outside the sphere")
+        Ranking_holder_out.loc[i] = [0, 0, 0]
+        count += 1
+        continue
+ 
+    #selecting the galaxy RA and Dec
+    ra_out = np.array(df_sliced_out[["RA"]].values.tolist())[:, 0]
+    dec_out = np.array(df_sliced_out[["dec"]].values.tolist())[:, 0]
     
-    for k in names:
-        #finds values for each histogram
-        values, bin_edge = np.histogram(Ranking_holder_out[k], bins = 75, range = (0, max(Ranking_holder[k])))
-        valuesin, bin_edgein = np.histogram(Ranking_holder[k], bins = 75)
-        
-        #sets up the initial count of GRB's inside vs outside
-        num = 0 
-        numin = 0
-        
-        
-        for t in range(len(values)):  
-            #adds up the number of GRBs in this bin which are inside and outside of 200Mpc
-            numin += valuesin[t]
-            num += values[t]
-            
-            #how many outside are left
-            left = 1000 - num
-            
-            #finding the relative difference to determine if this is significant
-            diff = (numin - num)
-            
-            if abs(diff)/N > distinction_level:
-                #sets off when the difference in number exceeds our distinction parameter
-                #i.e., it finds a better distinction value
-                
-                New_distinct = abs(diff)/N
-                distinction_level = New_distinct
-                
-                #finds the value of the centre of the bin
-                AVG = (bin_edge[t] + bin_edge[t+1])/2
-                
-                #sets the current best Ranking type
-                best_type = k
-                
-                Trigger = True
-                
-                
-                
-    if Trigger == False:
-        #if nothing changed, i.e., no better distinction value was found
-        
-        Iterative_rank.loc[j+1] = Iterative_rank.loc[j].values
-        powers[j+1] = powers[j]
-        
+    #collecting the luminosities and lum probabilities
+    Luminosity_out = np.array(df_sliced_out[["B Luminosity"]].values.tolist()) #Luminosity_Handling(np.array(df_sliced[["Absolute B Magnitude"]].values.tolist())) ## Converts A    
+    dl_out = np.array(df_sliced_out[["Luminosity Distance"]].values.tolist())    
     
-    elif Trigger == True:
-        #if a better distinction value is found
-        
-        Temp = [best_type, New_distinct, AVG, *potential_powers, mean_host_place]
-        Iterative_rank.loc[j+1] = Temp
-        
-        powers[j+1] = potential_powers
+    lum_prob_out, SGR_test_out = L_func(received_luminosity_out[i], c, dl_out) ##Uses the luminosity function to calculate probabilities
+    df_sliced_out["Luminosity Probability"] = lum_prob_out
+    df_sliced_out["SGR flag"] = SGR_test_out
     
-    #print("The distinction levels for each type of Ranking value have been analysed")
+    #sorting out the angular distances 
+    angular_distaance_out = np.zeros(df_sliced_out.shape[0])
+    
+    
+    for k in range(df_sliced_out.shape[0]):
+        angular_distaance_out[k] = Ang_Dist(ra_out[k], ra_prime_out[i], dec_out[k], dec_prime_out[i])
+    
+    
+    df_sliced_out["Angular Distance"] = angular_distaance_out
+
+    ####################################################################
+    #defining the ranking statistic and finding the various values
+    ranking_out = rank(angular_distaance_out, error_radius, dl_out, Luminosity_out, lum_prob_out, *powers)  ## Uses defined ranking statistic
+    df_sliced_out["Rank"] = ranking_out
+
+    Ranking_holder_out.loc[i, "Max Rank"] = max(ranking_out)
+    Ranking_holder_out.loc[i, "Sum Ranks"] = np.sum(ranking_out)
+    
+    x = -np.sort(-ranking_out)
+    Ranking_holder_out.loc[i, "Top 5 Avg"] = np.mean(x[:5])
+    #####################################################################
+
+    df_sliced_out = (pd.DataFrame.sort_values(df_sliced_out, by = ["Rank"], ascending = False)) ## Orders resultant sliced array
     
     count += 1
-    print(count)
+    if count % (0.1*N) == 0:
+        print(count)
+    
+print("The Ranking Statistic has been completed on all inside and outside GRBs.")
 
 
-Iterative_rank.to_csv("Performance of {0:.0f} combinations on {1:.0f} simulated GRBs.csv".format(Num, N), header = True, index = False)
+
+
+'''
+This last part of the loop is going to check if the distinction level between
+the inside GRBs and outside GRBs is bettered for these new proposed ranking
+when considering the three ranking values Max Rank, Sum Ranks and top 5 avg Rank values.
+
+If the distinction level is bettered outside to inside GRBs is reached then, that ranking 
+stat will be saved and the powers on its components will be become the new intial 
+conditions for the next change
+'''
+
+#distinction set as 0 to start with to see how well the base statistic works
+distinction_level = 0
+
+for k in names:
+    #finds values for each histogram
+    values, bin_edge = np.histogram(Ranking_holder_out[k], bins = 75, range = (0, max(Ranking_holder[k])))
+    valuesin, bin_edgein = np.histogram(Ranking_holder[k], bins = 75)
+    
+    #sets up the initial count of GRB's inside vs outside
+    num = 0 
+    numin = 0
+    
+    
+    for t in range(len(values)):  
+        #adds up the number of GRBs in this bin which are inside and outside of 200Mpc
+        numin += valuesin[t]
+        num += values[t]
+        
+        #how many outside are left
+        left = 1000 - num
+        
+        #finding the relative difference to determine if this is significant
+        diff = (numin - num)
+        
+        if abs(diff)/N > distinction_level:
+            #sets off when the difference in number exceeds our distinction parameter
+            #i.e., it finds a better distinction value
+            
+            New_distinct = abs(diff)/N
+            distinction_level = New_distinct
+            
+            #finds the value of the centre of the bin
+            AVG = (bin_edge[t] + bin_edge[t+1])/2
+            
+            #sets the current best Ranking type
+            best_type = k
+
+mean_host_placement = np.mean(percentages)
+
+initial = [best_type, New_distinct, AVG, *powers, mean_host_placement]
+
+Iterative_rank.loc[0] = initial
 
 elapsed_time = timer() - start # in seconds
-print('The MCMC took {:.5g} minutes to complete'.format(elapsed_time/60))
+print('The code took {:.3g} minutes to complete'.format(elapsed_time/60))
             
         
