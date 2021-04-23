@@ -9,7 +9,7 @@ import numpy as np; import pandas as pd; from astropy_healpix import HEALPix;
 from astropy.coordinates import ICRS, SkyCoord; from astropy import units as u;
 
 #importing the master GLADE file
-df_master = pd.read_csv("Data Files/GLADE_Master.csv", delimiter = ",", low_memory = False) ##GLADE_Master.csv previously defined
+df_master = pd.read_csv("Data Files/GLADE_Master_comma_100Mpc.csv", delimiter = ",", low_memory = False) ##GLADE_Master.csv previously defined
 
 #grabbing just the coordinates of each galaxy
 ra, dec = df_master["RA"], df_master["dec"]
@@ -20,17 +20,17 @@ hp = HEALPix(nside=16, order='ring', frame=ICRS())
 #making a holding array to hold the sectors for each galaxy
 hold = np.array([])    
 
-'''
+
 for i in range(len(ra)):
-    
+    '''
     This loops over all the galaxies, at each one it takes the galaxies coordinates
     and uses skycoord_to_healpix to find what HEALPix sector that galaxies belongs to,
     the result is then appended to the hold array
-    
+    '''
     coords = SkyCoord(ra[i], dec[i], unit = "deg")
     sector = hp.skycoord_to_healpix(coords)
     hold = np.append(hold, sector)
-'''
+
 
 #adding the sector identifyier data to the master file
 df_master["Sector"] = hold
@@ -47,7 +47,7 @@ for j in range(hp.npix):
     name = str("Sector_{}".format(j))
     
     #turning dataframe to csv file
-    sec.to_csv(r'Data Files\GLADE_Sectioned\{}.csv'.format(name), header = True)
+    sec.to_csv(r'Data Files\GLADE_Sectioned_Reduced\{}.csv'.format(name), header = True)
 
 def Sector_find(RA_grb, Dec_grb, err_radius):
     '''

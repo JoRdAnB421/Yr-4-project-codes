@@ -1,0 +1,234 @@
+For Hist Max Rank there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+less than 999 in 500 GRBs outside produce Max Rank2 values less than: 5.76e+17
+
+For this Max Rank2 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks2 values less than: 9.17e+17
+
+For this Sum Ranks2 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg2 values less than: 1.45e+17
+
+For this Top 5 Avg2 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Max Rank3 values less than: 3.72e+15
+
+For this Max Rank3 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks3 values less than: 5.7e+15
+
+For this Sum Ranks3 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg3 values less than: 9.35e+14
+
+For this Top 5 Avg3 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Max Rank4 values less than: 6.01e+28
+
+For this Max Rank4 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks4 values less than: 6.16e+28
+
+For this Sum Ranks4 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg4 values less than: 1.22e+28
+
+For this Top 5 Avg4 all 500 inside GRBs are contained
+
+For Hist Max Rank5 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks5 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg5 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+less than 999 in 500 GRBs outside produce Max Rank6 values less than: 2.03e+05
+
+For this Max Rank6 all 500 inside GRBs are contained
+
+For Hist Sum Ranks6 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+less than 999 in 500 GRBs outside produce Top 5 Avg6 values less than: 4.44e+04
+
+For this Top 5 Avg6 all 500 inside GRBs are contained
+
+For Hist Max Rank7 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks7 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg7 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank8 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks8 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg8 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank9 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks9 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg9 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank10 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks10 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg10 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank11 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks11 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg11 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank12 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks12 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg12 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+less than 999 in 500 GRBs outside produce Max Rank13 values less than: 3.23e+16
+
+For this Max Rank13 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks13 values less than: 3.52e+16
+
+For this Sum Ranks13 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg13 values less than: 6.87e+15
+
+For this Top 5 Avg13 all 500 inside GRBs are contained
+
+For Hist Max Rank14 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks14 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg14 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank15 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks15 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg15 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank16 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks16 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg16 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank17 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks17 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg17 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank18 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks18 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg18 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank19 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks19 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg19 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+less than 999 in 500 GRBs outside produce Max Rank20 values less than: 7.34e+06
+
+For this Max Rank20 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks20 values less than: 3.1e+07
+
+For this Sum Ranks20 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg20 values less than: 2.79e+06
+
+For this Top 5 Avg20 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Max Rank21 values less than: 3.32e+54
+
+For this Max Rank21 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks21 values less than: 3.32e+54
+
+For this Sum Ranks21 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg21 values less than: 6.64e+53
+
+For this Top 5 Avg21 all 500 inside GRBs are contained
+
+For Hist Max Rank22 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks22 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg22 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank23 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks23 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg23 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+less than 997 in 500 GRBs outside produce Max Rank24 values less than: 3.74e+06
+
+For this Max Rank24 all 500 inside GRBs are contained
+
+less than 997 in 500 GRBs outside produce Sum Ranks24 values less than: 3.81e+06
+
+For this Sum Ranks24 all 500 inside GRBs are contained
+
+less than 997 in 500 GRBs outside produce Top 5 Avg24 values less than: 7.62e+05
+
+For this Top 5 Avg24 all 500 inside GRBs are contained
+
+For Hist Max Rank25 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks25 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg25 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+less than 998 in 500 GRBs outside produce Max Rank26 values less than: 4.79e+06
+
+For this Max Rank26 all 500 inside GRBs are contained
+
+For Hist Sum Ranks26 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+less than 999 in 500 GRBs outside produce Top 5 Avg26 values less than: 1.8e+06
+
+For this Top 5 Avg26 all 500 inside GRBs are contained
+
+less than 998 in 500 GRBs outside produce Max Rank27 values less than: 4.74e+04
+
+For this Max Rank27 all 500 inside GRBs are contained
+
+For Hist Sum Ranks27 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+less than 999 in 500 GRBs outside produce Top 5 Avg27 values less than: 1.79e+04
+
+For this Top 5 Avg27 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Max Rank28 values less than: 3.62e+57
+
+For this Max Rank28 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks28 values less than: 3.62e+57
+
+For this Sum Ranks28 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg28 values less than: 7.23e+56
+
+For this Top 5 Avg28 all 500 inside GRBs are contained
+
+For Hist Max Rank29 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks29 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg29 there never reaches a good enough distinction of 500.0 between the number of GRBs inside vs outside
+

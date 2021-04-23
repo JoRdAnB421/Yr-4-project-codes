@@ -70,6 +70,7 @@ def Ang_Dist(ra1, ra2, dec1, dec2):## Calculates the angular distance between ap
     
     return (180/np.pi) * np.arccos(np.sin(dec1) * np.sin(dec2) + np.cos(dec1) * np.cos(dec2) * np.cos(ra1 - ra2))
 #################################################################
+"""
 def rank(theta, sigma, d_lum, luminosity, luminosity_probability): ## Normal
     ## Implements a ranking statistic defined in report
     return np.exp(-(theta**2/(2 * (sigma)**2))) * (1/d_lum * luminosity)[:, 0] * luminosity_probability #* Colour_factor
@@ -139,6 +140,78 @@ def rank22(theta, sigma, d_lum, luminosity, luminosity_probability): ## Optimise
 
 def rank23(theta, sigma, d_lum, luminosity, luminosity_probability): ## Optimise 2
     return np.exp(-((theta**2)**100/(2 * (sigma)**2))) * (1/d_lum**8 * luminosity)[:, 0] * luminosity_probability**2
+"""
+#################################################################
+#Daves old functions before I fixed them
+def rank(theta, sigma, d_lum, luminosity, luminosity_probability): ## Normal
+    ## Implements a ranking statistic defined in report
+    return np.exp(-(theta**2/(2 * (sigma)**2))) * (1/d_lum * luminosity)[:, 0] * luminosity_probability #* Colour_factor
+
+def rank2(theta, sigma, d_lum, luminosity, luminosity_probability): ## Luminosity
+    return np.exp(-(theta**2/(2 *(sigma)**2))) * (1/d_lum * luminosity**2)[:, 0] * luminosity_probability 
+
+def rank3(theta, sigma, d_lum, luminosity, luminosity_probability): ## Luminosity Distance
+    return np.exp(-(theta**2/(2 *(sigma)**2))) * (1/d_lum**2 * luminosity)[:, 0] * luminosity_probability 
+
+def rank4(theta, sigma, d_lum, luminosity, luminosity_probability): ## Lum_prob
+    return np.exp(-(theta**2/(2 *(sigma)**2))) * (1/d_lum * luminosity)[:, 0] * luminosity_probability**2
+
+def rank5(theta, sigma, d_lum, luminosity, luminosity_probability): ## Lum_prob, Lum
+    return np.exp(-(theta**2/(2 *(sigma)**2))) * (1/d_lum * luminosity**2)[:, 0] * luminosity_probability**2 
+
+def rank6(theta, sigma, d_lum, luminosity, luminosity_probability): ## D_Lum, Lum_prob
+    return np.exp(-(theta**2/(2 *(sigma)**2))) * (1/d_lum**2 * luminosity)[:, 0] * luminosity_probability**2 
+
+def rank7(theta, sigma, d_lum, luminosity, luminosity_probability): ## D_lum, Lum
+    return np.exp(-(theta**2/(2 *(sigma)**2))) * (1/d_lum**2 * luminosity**2)[:, 0] * luminosity_probability 
+
+def rank8(theta, sigma, d_lum, luminosity, luminosity_probability): ## All
+    return np.exp(-(theta**2/((sigma)**2))) * (1/d_lum**2 * luminosity**2)[:, 0] * luminosity_probability**2
+
+def rank9(theta, sigma, d_lum, luminosity, luminosity_probability): ## Angular Distance
+    return np.exp(-(theta**2/((sigma)**2))) * (1/d_lum * luminosity)[:, 0] * luminosity_probability
+
+def rank10(theta, sigma, d_lum, luminosity, luminosity_probability): ## Ang_Dist, D_Lum
+    return np.exp(-(theta**2/((sigma)**2))) * (1/d_lum**2 * luminosity)[:, 0] * luminosity_probability  
+
+def rank11(theta, sigma, d_lum, luminosity, luminosity_probability): ## Ang_Dist, Lum
+    return np.exp(-(theta**2/((sigma)**2))) * (1/d_lum * luminosity**2)[:, 0] * luminosity_probability 
+
+def rank12(theta, sigma, d_lum, luminosity, luminosity_probability): ## Ang_Dist, Lum_Prob
+    return np.exp(-(theta**2/((sigma)**2))) * (1/d_lum * luminosity)[:, 0] * luminosity_probability**2
+
+def rank13(theta, sigma, d_lum, luminosity, luminosity_probability): ## All except Ang_Dist
+    return np.exp(-(theta**2/(2 *(sigma)**2))) * (1/d_lum**2 * luminosity**2)[:, 0] * luminosity_probability**2 
+
+def rank14(theta, sigma, d_lum, luminosity, luminosity_probability): ## All except Lum
+    return np.exp(-(theta**2/((sigma)**2))) * (1/d_lum**2 * luminosity)[:, 0] * luminosity_probability**2
+
+def rank15(theta, sigma, d_lum, luminosity, luminosity_probability): ## All except d_lum
+    return np.exp(-(theta**2/((sigma)**2))) * (1/d_lum * luminosity**2)[:, 0] * luminosity_probability**2
+
+def rank16(theta, sigma, d_lum, luminosity, luminosity_probability): ## All except Lum_prob
+    return np.exp(-(theta**2/((sigma)**2))) * (1/d_lum**2 * luminosity**2)[:, 0] * luminosity_probability
+
+def rank17(theta, sigma, d_lum, luminosity, luminosity_probability): ## No angular Distance
+    return np.exp(0 * -(theta**2/(2 *(sigma)**2))) * (1/d_lum * luminosity)[:, 0] * luminosity_probability 
+
+def rank18(theta, sigma, d_lum, luminosity, luminosity_probability): ## No Luminosity Distance
+    return np.exp(-(theta**2/(2 * (sigma)**2))) * (1/d_lum**0 * luminosity)[:, 0] * luminosity_probability
+
+def rank19(theta, sigma, d_lum, luminosity, luminosity_probability): ## No Luminosity
+    return np.exp(-(theta**2/(2 * (sigma)**2))) * (1/d_lum * luminosity**0)[:, 0] * luminosity_probability**2
+
+def rank20(theta, sigma, d_lum, luminosity, luminosity_probability): ## No Luminosity Probability
+    return np.exp(-(theta**2/(2 * (sigma)**2))) * (1/d_lum * luminosity)[:, 0] * luminosity_probability**0
+
+def rank21(theta, sigma, d_lum, luminosity, luminosity_probability): ## Optimise 1
+    return np.exp(-(theta**2/(2 * (sigma)**2)))**(4) * (1/d_lum**0 * luminosity)[:, 0] * luminosity_probability**2
+
+def rank22(theta, sigma, d_lum, luminosity, luminosity_probability): ## Optimise 2
+    return np.exp(-(theta**2/(2 * (sigma)**2)))**(sigma**4) * (1/d_lum**0 * luminosity)[:, 0] * luminosity_probability**2
+
+def rank23(theta, sigma, d_lum, luminosity, luminosity_probability): ## Optimise 2
+    return np.exp(-((theta**2)**100/(2 * (sigma)**2))) * (1/d_lum**0 * luminosity)[:, 0] * luminosity_probability**2
 
 #################################################################
 def convert(h, m, s): #Hours minutes seconds to degrees (More for applied code than here)
@@ -335,13 +408,19 @@ def Sector_find(RA_grb, Dec_grb, err_radius):
     '''
     
     #corrects for if the rotations of the galaxy coords puts the GRB in an invalid position
-    if Dec_grb > 90:
+    if abs(Dec_grb) > 90:
         x = RA_grb
-        Dec_grb = 180 - Dec_grb
+        parity = Dec_grb/abs(Dec_grb)
+        
+        Dec_grb = (180 - abs(Dec_grb))*parity
+        
         RA_grb = RA_grb + 180
         
         if RA_grb > 360:
             RA_grb = x - 180
+    
+    elif RA_grb < 0:
+        RA_grb = 360 + RA_grb
         
     #making the sky coordinates
     coords = SkyCoord(RA_grb, Dec_grb, unit = "deg")
@@ -550,7 +629,7 @@ for i in range(N):
     
     ''''My new function'''
     #selects the corresponding sectors to look through
-    df_sliced = Sector_find(ra_prime[i], dec_prime[i], error_radius/2)
+    df_sliced = Sector_find(ra_prime[i], dec_prime[i], error_radius)
     df_sliced = df_sliced.rename(columns = {"Unnamed: 0.1": "Unnamed: 0"})
     
     #creates a mask to identify the host galaxy, the host having an identifier of 1

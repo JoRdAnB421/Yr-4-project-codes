@@ -1,0 +1,204 @@
+For Hist Max Rank there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank2 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks2 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg2 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank3 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks3 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg3 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank4 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks4 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg4 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank5 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks5 THIS COULD BE USEFUL
+Less than 78 in 1000 GRB's outside 200MPc produce Sum Ranks5 values greater than: 0.00676
+For this Sum Ranks5 value, 2 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg5 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank6 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks6 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg6 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank7 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks7 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg7 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank8 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks8 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg8 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank9 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks9 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg9 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank10 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks10 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg10 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank11 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks11 THIS COULD BE USEFUL
+Less than 69 in 1000 GRB's outside 200MPc produce Sum Ranks11 values greater than: 0.00676
+For this Sum Ranks11 value, 3 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg11 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank12 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks12 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg12 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank13 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks13 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg13 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank14 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks14 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg14 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank15 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks15 THIS COULD BE USEFUL
+Less than 70 in 1000 GRB's outside 200MPc produce Sum Ranks15 values greater than: 0.00676
+For this Sum Ranks15 value, 3 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg15 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank16 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks16 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg16 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank17 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks17 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg17 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+lOOK INTO Max Rank18 THIS COULD BE USEFUL
+Less than 188 in 1000 GRB's outside 200MPc produce Max Rank18 values greater than: 0.0203
+For this Max Rank18 value, 3 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Sum Ranks18 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+lOOK INTO Top 5 Avg18 THIS COULD BE USEFUL
+Less than 186 in 1000 GRB's outside 200MPc produce Top 5 Avg18 values greater than: 0.0473
+For this Top 5 Avg18 value, 0 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Max Rank19 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks19 THIS COULD BE USEFUL
+Less than 28 in 1000 GRB's outside 200MPc produce Sum Ranks19 values less than: 0.101
+For this Sum Ranks19 value, 172 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Top 5 Avg19 THIS COULD BE USEFUL
+Less than 6 in 1000 GRB's outside 200MPc produce Top 5 Avg19 values less than: 0.00676
+For this Top 5 Avg19 value, 150 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Max Rank20 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks20 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg20 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank21 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks21 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg21 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank22 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks22 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg22 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank23 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks23 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg23 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank24 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks24 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg24 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+lOOK INTO Max Rank25 THIS COULD BE USEFUL
+Less than 15 in 1000 GRB's outside 200MPc produce Max Rank25 values less than: 0.939
+For this Max Rank25 value, 111 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Sum Ranks25 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg25 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank26 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks26 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+lOOK INTO Top 5 Avg26 THIS COULD BE USEFUL
+Less than 137 in 1000 GRB's outside 200MPc produce Top 5 Avg26 values less than: 0.101
+For this Top 5 Avg26 value, 61 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Max Rank27 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks27 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+lOOK INTO Top 5 Avg27 THIS COULD BE USEFUL
+Less than 140 in 1000 GRB's outside 200MPc produce Top 5 Avg27 values less than: 0.101
+For this Top 5 Avg27 value, 60 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Max Rank28 THIS COULD BE USEFUL
+Less than 15 in 1000 GRB's outside 200MPc produce Max Rank28 values less than: 0.939
+For this Max Rank28 value, 111 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Sum Ranks28 there never reaches a good enough distinction of 800.0 between the number of GRBs inside vs outside
+
+lOOK INTO Top 5 Avg28 THIS COULD BE USEFUL
+Less than 0 in 1000 GRB's outside 200MPc produce Top 5 Avg28 values less than: 0.0338
+For this Top 5 Avg28 value, 134 out of 1000 GRBs inside 200Mpc will be missed
+##############################################################################
+

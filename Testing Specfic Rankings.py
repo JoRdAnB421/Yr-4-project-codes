@@ -12,7 +12,7 @@ from astropy.coordinates import ICRS, SkyCoord; from astropy import units as u;
 from timeit import default_timer as timer
 
 #number of GRBs to be tested
-N = 250
+N = 1000
 
 '''
 I would like to know the relative ratio of of the number of GRBs which occur within
@@ -504,7 +504,9 @@ start = timer()
 Num = 50
 
 #sets what powers you want to use
-powers = [1, 1, 1, 1]
+powers = [0.0942490673932074, 0.342760123472853, -0.0258831489973406, -4.6668065925182]
+
+#powers = [1, 1, 0, 1]
 
 #I want to measure for various different styles of ranking and so this defines those types
 names = np.array(["Max Rank", "Sum Ranks", "Top 5 Avg"], dtype = str)    
@@ -701,15 +703,25 @@ If the distinction level is bettered outside to inside GRBs is reached then, tha
 stat will be saved and the powers on its components will be become the new intial 
 conditions for the next change
 '''
-
+#%%
 #distinction set as 0 to start with to see how well the base statistic works
 distinction_level = 0
 
 for k in names:
-    #finds values for each histogram
-    values, bin_edge = np.histogram(Ranking_holder_out[k], bins = 75, range = (0, max(Ranking_holder[k])))
-    valuesin, bin_edgein = np.histogram(Ranking_holder[k], bins = 75)
+    #finding the range (upper)
+    if max(Ranking_holder[k]) >= max(Ranking_holder_out[k]):
+        upper = max(Ranking_holder[k])
+    elif max(Ranking_holder[k]) < max(Ranking_holder_out[k]):
+        upper = max(Ranking_holder_out[k])
     
+    #finding the range (lower)
+    if min(Ranking_holder[k]) <= min(Ranking_holder_out[k]):
+        lower = min(Ranking_holder[k])
+    elif min(Ranking_holder[k]) > min(Ranking_holder_out[k]):
+        lower = min(Ranking_holder_out[k])
+    #finds values for each histogram
+    values, bin_edge = np.histogram(Ranking_holder_out[k], bins = 75, range = (lower, upper))
+    valuesin, bin_edgein = np.histogram(Ranking_holder[k], bins = 75, range = (lower, upper))
     #sets up the initial count of GRB's inside vs outside
     num = 0 
     numin = 0
@@ -729,9 +741,18 @@ for k in names:
         if abs(diff)/N > distinction_level:
             #sets off when the difference in number exceeds our distinction parameter
             #i.e., it finds a better distinction value
+            x = numin
+            y = num
             
-            New_distinct = abs(diff)/N
-            distinction_level = New_distinct
+            #storing the values and bin edges to plot later
+            goodvals = values
+            goodvalsin = valuesin
+            goodedge = bin_edge
+            goodedgein = bin_edgein
+            
+            
+            New_distinct = diff/N
+            distinction_level = abs(New_distinct)
             
             #finds the value of the centre of the bin
             AVG = (bin_edge[t] + bin_edge[t+1])/2
@@ -741,11 +762,24 @@ for k in names:
 
 mean_host_placement = np.mean(percentages)
 
-initial = [best_type, New_distinct, AVG, *powers, mean_host_placement]
+initial = [best_type, distinction_level, AVG, *powers, mean_host_placement]
 
 Iterative_rank.loc[0] = initial
 
 elapsed_time = timer() - start # in seconds
 print('The code took {:.3g} minutes to complete'.format(elapsed_time/60))
             
-        
+#%%
+plt.close()
+
+plt.figure()
+plt.bar(goodedge[:-1], goodvals, width= (goodedge[1]-goodedge[0]), color='red', alpha=0.5, label = "outside")
+plt.bar(goodedgein[:-1], goodvalsin, width= (goodedgein[1]-goodedgein[0]), color='blue', alpha=0.5, label = "inside")
+plt.axvline(AVG, ls = "--", color = "black", label = "Best distinction point")
+
+
+plt.legend(loc = "best")
+plt.xlabel("Stat values")
+plt.ylabel("Number")
+plt.title("Histogram of {0} producing the best distinction \n value for {1} simulated SGRBs".format(best_type, N))
+plt.savefig("Histogram.png")

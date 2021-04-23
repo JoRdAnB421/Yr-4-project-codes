@@ -1,0 +1,10 @@
+stat 23:
+- good "sumranks" distiction
+- good placement against other stats
+- Ranks host galaxy in top 40% up to error radius of 5 degrees
+
+
+Stat 18:
+- Good "maxranks" distinction
+- Performs okay against the other stats though is sometimes shit
+- Also a decent top 5 average distinction 

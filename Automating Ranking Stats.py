@@ -12,7 +12,7 @@ from astropy.coordinates import ICRS, SkyCoord; from astropy import units as u;
 from timeit import default_timer as timer
 
 #number of GRBs to be tested
-N = 250
+N = 500
 
 '''
 I would like to know the relative ratio of of the number of GRBs which occur within
@@ -499,14 +499,14 @@ Statistic.
 start = timer()
 
 #sets the number of different combinations of powers to test
-Num = 20
+Num = 10
 
 #sets the initial conditions of the powers (set to 1 for now)
 powers = np.zeros((Num+1, 4), dtype = float)
-powers[0] = np.array([1, 1, 1, 1], dtype = float)
+powers[0] = np.array([-1, -8, 1, 1], dtype = float)
 
 #sets the amount they are will try and change at each step.
-sigma = np.array([10, 10, 10, 10], dtype = float)
+sigma = np.array([10, 3, 5, 5], dtype = float)
 
 #I want to measure for various different styles of ranking and so this defines those types
 names = np.array(["Max Rank", "Sum Ranks", "Top 5 Avg"], dtype = str)    
@@ -522,7 +522,7 @@ column_names = ["Rank Type", "Distinction", "Cutoff Value", "a", "b", "c", "d", 
 Iterative_rank = pd.DataFrame(index = range(Num+1), columns = column_names)
 
 #initial conditions These are established from the Specific Rankings python file
-inital = ["Top 5 Avg", 0.34, 2e6, *powers[0], 0.341]
+inital = ["Top 5 Avg", 0.582, 8.04469e27, *powers[0], 0.486737]
 Iterative_rank.loc[0] = inital
 
 count = 0

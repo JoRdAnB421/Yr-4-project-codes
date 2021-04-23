@@ -1,0 +1,305 @@
+For Hist Max Rank there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks THIS COULD BE USEFUL
+Less than 779 in 500 GRB's outside 200MPc produce Sum Ranks values greater than: 3.17e+08
+For this Sum Ranks value, 113 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+less than 999 in 500 GRBs outside produce Max Rank2 values less than: 5.76e+17
+
+For this Max Rank2 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks2 values less than: 9.17e+17
+
+For this Sum Ranks2 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg2 values less than: 1.45e+17
+
+For this Top 5 Avg2 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Max Rank3 values less than: 3.72e+15
+
+For this Max Rank3 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks3 values less than: 5.7e+15
+
+For this Sum Ranks3 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg3 values less than: 9.35e+14
+
+For this Top 5 Avg3 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Max Rank4 values less than: 6.01e+28
+
+For this Max Rank4 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks4 values less than: 6.16e+28
+
+For this Sum Ranks4 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg4 values less than: 1.22e+28
+
+For this Top 5 Avg4 all 500 inside GRBs are contained
+
+For Hist Max Rank5 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks5 THIS COULD BE USEFUL
+Less than 438 in 500 GRB's outside 200MPc produce Sum Ranks5 values greater than: 7.03e+16
+For this Sum Ranks5 value, 459 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg5 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+less than 999 in 500 GRBs outside produce Max Rank6 values less than: 2.03e+05
+
+For this Max Rank6 all 500 inside GRBs are contained
+
+lOOK INTO Sum Ranks6 THIS COULD BE USEFUL
+Less than 745 in 500 GRB's outside 200MPc produce Sum Ranks6 values greater than: 2.61e+04
+For this Sum Ranks6 value, 149 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Top 5 Avg6 THIS COULD BE USEFUL
+Less than 256 in 500 GRB's outside 200MPc produce Top 5 Avg6 values greater than: 934
+For this Top 5 Avg6 value, 631 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Max Rank7 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks7 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg7 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank8 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks8 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg8 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank9 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks9 THIS COULD BE USEFUL
+Less than 753 in 500 GRB's outside 200MPc produce Sum Ranks9 values greater than: 2.2e+08
+For this Sum Ranks9 value, 144 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg9 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank10 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks10 THIS COULD BE USEFUL
+Less than 781 in 500 GRB's outside 200MPc produce Sum Ranks10 values greater than: 1.59e+06
+For this Sum Ranks10 value, 114 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Top 5 Avg10 THIS COULD BE USEFUL
+Less than 461 in 500 GRB's outside 200MPc produce Top 5 Avg10 values greater than: 2.83e+04
+For this Top 5 Avg10 value, 415 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Max Rank11 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks11 THIS COULD BE USEFUL
+Less than 383 in 500 GRB's outside 200MPc produce Sum Ranks11 values greater than: 4.84e+18
+For this Sum Ranks11 value, 469 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg11 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank12 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks12 THIS COULD BE USEFUL
+Less than 684 in 500 GRB's outside 200MPc produce Sum Ranks12 values greater than: 2.44e+06
+For this Sum Ranks12 value, 216 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg12 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+less than 999 in 500 GRBs outside produce Max Rank13 values less than: 3.23e+16
+
+For this Max Rank13 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks13 values less than: 3.52e+16
+
+For this Sum Ranks13 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg13 values less than: 6.87e+15
+
+For this Top 5 Avg13 all 500 inside GRBs are contained
+
+For Hist Max Rank14 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks14 THIS COULD BE USEFUL
+Less than 783 in 500 GRB's outside 200MPc produce Sum Ranks14 values greater than: 1.58e+04
+For this Sum Ranks14 value, 113 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Top 5 Avg14 THIS COULD BE USEFUL
+Less than 459 in 500 GRB's outside 200MPc produce Top 5 Avg14 values greater than: 286
+For this Top 5 Avg14 value, 414 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Max Rank15 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks15 THIS COULD BE USEFUL
+Less than 380 in 500 GRB's outside 200MPc produce Sum Ranks15 values greater than: 4.82e+16
+For this Sum Ranks15 value, 480 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg15 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank16 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks16 THIS COULD BE USEFUL
+Less than 349 in 500 GRB's outside 200MPc produce Sum Ranks16 values greater than: 2.2e+16
+For this Sum Ranks16 value, 548 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg16 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank17 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks17 THIS COULD BE USEFUL
+Less than 778 in 500 GRB's outside 200MPc produce Sum Ranks17 values greater than: 5.27e+08
+For this Sum Ranks17 value, 122 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg17 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank18 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks18 THIS COULD BE USEFUL
+Less than 701 in 500 GRB's outside 200MPc produce Sum Ranks18 values greater than: 5.43e+10
+For this Sum Ranks18 value, 193 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg18 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank19 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks19 THIS COULD BE USEFUL
+Less than 605 in 500 GRB's outside 200MPc produce Sum Ranks19 values greater than: 0.000465
+For this Sum Ranks19 value, 284 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Top 5 Avg19 THIS COULD BE USEFUL
+Less than 11 in 500 GRB's outside 200MPc produce Top 5 Avg19 values greater than: 1.27e-05
+For this Top 5 Avg19 value, 864 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+less than 999 in 500 GRBs outside produce Max Rank20 values less than: 7.34e+06
+
+For this Max Rank20 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks20 values less than: 3.1e+07
+
+For this Sum Ranks20 all 500 inside GRBs are contained
+
+lOOK INTO Top 5 Avg20 THIS COULD BE USEFUL
+Less than 727 in 500 GRB's outside 200MPc produce Top 5 Avg20 values greater than: 2.94e+04
+For this Top 5 Avg20 value, 172 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+less than 999 in 500 GRBs outside produce Max Rank21 values less than: 3.32e+54
+
+For this Max Rank21 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks21 values less than: 3.32e+54
+
+For this Sum Ranks21 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg21 values less than: 6.64e+53
+
+For this Top 5 Avg21 all 500 inside GRBs are contained
+
+For Hist Max Rank22 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks22 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg22 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Max Rank23 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+lOOK INTO Sum Ranks23 THIS COULD BE USEFUL
+Less than 772 in 500 GRB's outside 200MPc produce Sum Ranks23 values greater than: 1.27e+07
+For this Sum Ranks23 value, 126 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+For Hist Top 5 Avg23 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+less than 997 in 500 GRBs outside produce Max Rank24 values less than: 3.74e+06
+
+For this Max Rank24 all 500 inside GRBs are contained
+
+less than 997 in 500 GRBs outside produce Sum Ranks24 values less than: 3.81e+06
+
+For this Sum Ranks24 all 500 inside GRBs are contained
+
+less than 997 in 500 GRBs outside produce Top 5 Avg24 values less than: 7.62e+05
+
+For this Top 5 Avg24 all 500 inside GRBs are contained
+
+lOOK INTO Max Rank25 THIS COULD BE USEFUL
+Less than 190 in 500 GRB's outside 200MPc produce Max Rank25 values less than: 0.00985
+For this Max Rank25 value, 662 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Sum Ranks25 THIS COULD BE USEFUL
+Less than 697 in 500 GRB's outside 200MPc produce Sum Ranks25 values greater than: 5.74
+For this Sum Ranks25 value, 203 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Top 5 Avg25 THIS COULD BE USEFUL
+Less than 161 in 500 GRB's outside 200MPc produce Top 5 Avg25 values less than: 0.00979
+For this Top 5 Avg25 value, 689 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Max Rank26 THIS COULD BE USEFUL
+Less than 670 in 500 GRB's outside 200MPc produce Max Rank26 values greater than: 1.02e+05
+For this Max Rank26 value, 230 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Sum Ranks26 THIS COULD BE USEFUL
+Less than 677 in 500 GRB's outside 200MPc produce Sum Ranks26 values greater than: 1.23e+05
+For this Sum Ranks26 value, 217 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Top 5 Avg26 THIS COULD BE USEFUL
+Less than 662 in 500 GRB's outside 200MPc produce Top 5 Avg26 values greater than: 3.76e+04
+For this Top 5 Avg26 value, 232 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+less than 998 in 500 GRBs outside produce Max Rank27 values less than: 4.74e+04
+
+For this Max Rank27 all 500 inside GRBs are contained
+
+lOOK INTO Sum Ranks27 THIS COULD BE USEFUL
+Less than 677 in 500 GRB's outside 200MPc produce Sum Ranks27 values greater than: 1.22e+03
+For this Sum Ranks27 value, 217 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+lOOK INTO Top 5 Avg27 THIS COULD BE USEFUL
+Less than 659 in 500 GRB's outside 200MPc produce Top 5 Avg27 values greater than: 379
+For this Top 5 Avg27 value, 239 out of 500 GRBs inside 200Mpc will be missed
+##############################################################################
+
+less than 999 in 500 GRBs outside produce Max Rank28 values less than: 3.62e+57
+
+For this Max Rank28 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Sum Ranks28 values less than: 3.62e+57
+
+For this Sum Ranks28 all 500 inside GRBs are contained
+
+less than 999 in 500 GRBs outside produce Top 5 Avg28 values less than: 7.23e+56
+
+For this Top 5 Avg28 all 500 inside GRBs are contained
+
+For Hist Max Rank29 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Sum Ranks29 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
+For Hist Top 5 Avg29 there never reaches a good enough distinction of 100.0 between the number of GRBs inside vs outside
+
