@@ -1,3 +1,2 @@
 # Yr-4-project-codes
-Code by David Evans for "rapidly identifying astrophysically significant GRB's"
-The .csv files are not yet uploaded as they are too large for me to upload to github at the moment
+Coallating all of the codes used for my 4th year project, David Evans is credited on tose files which he helped to create (by providing the foundations for my work)
