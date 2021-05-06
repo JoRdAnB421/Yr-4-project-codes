@@ -12,7 +12,7 @@ from astropy.coordinates import ICRS, SkyCoord; from astropy import units as u;
 from timeit import default_timer as timer
 
 #number of GRBs to be tested
-N = 500
+N = 10
 
 '''
 I would like to know the relative ratio of of the number of GRBs which occur within
