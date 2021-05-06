@@ -1,0 +1,130 @@
+GRB	Redshift
+210413B
+210323A
+210119A
+201221D	1.046 (GTC: emission/absorption)
+201006A
+200907B
+200522A	0.4 (SDSS: photometric)
+200411A
+191031D
+190627A	1.942 (VLT: absorption)
+190610A
+190427A
+190326A
+181123B
+180805A
+180727A
+180718A
+180715A
+180402A
+180204A
+170728A
+170524A
+170428A
+170325A
+170127B
+170112A
+161104A
+161004A
+160927A
+160821B
+160726A
+160714A
+160624A	0.483 (Gemini-North: emission, possible host)
+160601A
+160525B
+160411A
+160408A
+151229A
+151228A
+151205B
+151127A
+150831A
+150728A
+150710A
+150423A	1.394 (VLT: absorption, tentative)
+150301A
+150120A	0.460 (Gemini-North: emission, possible host)
+150101B	0.093 (GTC: emission from host)
+150101A
+141212A	0.596 (Gemini-North: emission from likely host)
+141205A
+140930B
+140903A	0.351 (Gemini-North: absorption, tentative host redshift)
+140622A	~0.959 (VLT: emission from host)
+140611A
+140606A
+140516A
+140414A
+140402A
+140320A
+140129B
+131004A	0.717 (Magellan: emission)|0.71 (TNG: emission)
+130912A
+130626A
+130603B	0.356 (GTC: absorption & emission)|0.356 (Magellan: emission, host)|0.356 (Gemini-South: emission)|0.3564 (VLT: absorption & emission)
+130515A
+130313A
+121226A
+120804A
+120630A
+120521A
+120403A
+120305A
+120229A
+111126A
+111117A
+111020A
+110420B
+110112A
+101224A
+101219A	0.718 (Gemini-North: emission, host)
+101129A
+100724A	1.288 (VLT: absorption)
+100702A
+100628A
+100625A
+100206A
+100117A
+091117
+091109B
+090815C
+090621B
+090515
+090510	0.903 (VLT: emission)
+090426	2.609 (Keck-I: absorption)|2.609 (VLT: absorption)
+090417A
+090305A
+081226A
+081101
+081024A
+080919
+080905A	0.1218 (emission from host)
+080702A
+080426
+080121
+071227	0.383 (VLT: emission, host redshift)|0.384 (Magellan: emission, host redshift)
+071112B
+070923
+070810B
+070809
+070729
+070724A	0.457 (Gemini South: emission, from host)|0.457 (VLT: emission, from host)
+070714A
+070429B	0.904 (Keck I: from probable host)
+070406
+070209
+061217	0.827 (Magellan: emission)
+061201	0.111 (Magellan, from probable host)
+060801
+060502B	0.287 (Keck I-candidate: absorption)
+060313
+051221A	0.547 (Gemini: emission)
+051210
+051105A
+050925
+050906
+050813	1.8
+050509B	0.225 (Keck: absorption)
+050202

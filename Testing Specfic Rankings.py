@@ -11,9 +11,10 @@ from scipy.interpolate import interp1d; from astropy_healpix import HEALPix;
 from astropy.coordinates import ICRS, SkyCoord; from astropy import units as u;
 from timeit import default_timer as timer
 
+plt.close('all')
+
 #number of GRBs to be tested
 N = 1000
-
 '''
 I would like to know the relative ratio of of the number of GRBs which occur within
 250 MPc to those outside, up to z = 1 (we assume that everything past this point
@@ -719,6 +720,7 @@ for k in names:
         lower = min(Ranking_holder[k])
     elif min(Ranking_holder[k]) > min(Ranking_holder_out[k]):
         lower = min(Ranking_holder_out[k])
+        
     #finds values for each histogram
     values, bin_edge = np.histogram(Ranking_holder_out[k], bins = 75, range = (lower, upper))
     valuesin, bin_edgein = np.histogram(Ranking_holder[k], bins = 75, range = (lower, upper))
@@ -770,11 +772,11 @@ elapsed_time = timer() - start # in seconds
 print('The code took {:.3g} minutes to complete'.format(elapsed_time/60))
             
 #%%
-plt.close()
+plt.close("all")
 
-plt.figure()
-plt.bar(goodedge[:-1], goodvals, width= (goodedge[1]-goodedge[0]), color='red', alpha=0.5, label = "outside")
-plt.bar(goodedgein[:-1], goodvalsin, width= (goodedgein[1]-goodedgein[0]), color='blue', alpha=0.5, label = "inside")
+plt.figure(0)
+plt.bar(goodedge[:-1], goodvals, width= (goodedge[1]-goodedge[0]), color='red', alpha=0.5, label = "Outside")
+plt.bar(goodedgein[:-1], goodvalsin, width= (goodedgein[1]-goodedgein[0]), color='blue', alpha=0.5, label = "Inside")
 plt.axvline(AVG, ls = "--", color = "black", label = "Best distinction point")
 
 
@@ -782,4 +784,61 @@ plt.legend(loc = "best")
 plt.xlabel("Stat values")
 plt.ylabel("Number")
 plt.title("Histogram of {0} producing the best distinction \n value for {1} simulated SGRBs".format(best_type, N))
-plt.savefig("Histogram.png")
+plt.savefig("Histogram {}.png".format(N))
+
+#%%
+"""
+Calculating and plotting a cumulative distribution for the histogram values 
+inside and outside.
+"""
+
+cumul_in = np.zeros_like(goodvalsin)
+cumul = np.zeros_like(goodvals)
+
+#set the initial conditions
+cumul_in[0] = goodvalsin[0]
+cumul[0] = goodvals[0]
+
+vals = np.zeros_like(goodvals, dtype = float)
+valsin = np.zeros_like(goodvals, dtype = float)
+
+for i in range(1, len(goodvals)):
+    cumul_in[i] = cumul_in[i-1] + goodvalsin[i-1]
+    cumul[i] = cumul[i-1] + goodvals[i-1]
+    
+    vals[i] = (goodedge[i] + goodedge[i-1])/2
+    valsin[i] = (goodedgein[i] + goodedgein[i-1])/2
+
+
+if cumul[-1] > N:
+    dif = cumul[-1] - N
+    cumul = cumul - dif
+
+plt.figure(1)
+plt.plot(vals, cumul, color = 'red', label = "Outside")
+plt.plot(valsin, cumul_in, color = "Blue", label = "Inside")
+plt.axvline(AVG, ls = "--", color = "black", label = "Cut-off value")
+
+#plt.yscale("log" )
+#plt.xscale("log")
+plt.xlabel("Stat values")
+plt.ylabel("Count")
+plt.title("The cumulative count of inside and outside SGRBs when using \n {} on {} simulated bursts".format(best_type, N))
+
+plt.grid(ls = "--", which = "both")
+plt.legend(loc = "best")
+plt.savefig("Cumulative {}.png".format(N))
+
+
+#%%
+#calculate a false alarm rate
+inside = N - x
+outside = N - y
+
+total = inside + outside 
+
+false_alarm_rate = (outside/total)*100
+eff = (inside/N)*100
+
+print("The allowed false alarm rate is {:.3g} %".format(false_alarm_rate))
+print("The efficiency of detecting inside SGRBs is {:.3g} %".format(eff))
