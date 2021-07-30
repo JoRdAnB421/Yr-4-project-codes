@@ -501,9 +501,6 @@ Statistic.
 
 start = timer()
 
-#sets the number of different combinations of powers to test
-Num = 50
-
 #sets what powers you want to use
 powers = [0.0942490673932074, 0.342760123472853, -0.0258831489973406, -4.6668065925182]
 
@@ -767,6 +764,8 @@ mean_host_placement = np.mean(percentages)
 initial = [best_type, distinction_level, AVG, *powers, mean_host_placement]
 
 Iterative_rank.loc[0] = initial
+Iterative_rank.to_csv("Values of the best histogram for the given statistic.csv", Header = ["Best type", "Distinction level", "Rank value for distinction", "a", "b", "c", "d", "Mean placement of host galaxy"])
+
 
 elapsed_time = timer() - start # in seconds
 print('The code took {:.3g} minutes to complete'.format(elapsed_time/60))
