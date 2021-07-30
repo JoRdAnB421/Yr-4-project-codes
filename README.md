@@ -30,4 +30,6 @@ It would be possible to add extra measures of the rank values if you want howeve
 
 # Using a new catalogue
 
-Patrick mentioned that you will be looking at other catalogues (like SDSS) and to do this you must first put the new catalogue into the "proper HealPix.py" script as you have to split up the catalogue into smaller data files which represent different equal area sectors of the sky. You would also need to make a separate file which is "reduced" that is to say has all of the galaxies outside of your observing limit removed (I had this at 100 Mpc due to the completeness of the Glade galaxy catalogue).
+Patrick mentioned that you will be looking at other catalogues (like SDSS) and to do this you must first put the new catalogue into the "proper HealPix.py" script as you have to split up the catalogue into smaller data files which represent different equal area sectors of the sky. You would also need to make a separate file which is "reduced" that is to say has all of the galaxies outside of your observing limit removed (I had this at 100 Mpc due to the completeness of the Glade galaxy catalogue). 
+
+When using this script you will just have to change the name of the file you're reducing on line 12 and what the sectors will be called on line 50.
