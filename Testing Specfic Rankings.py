@@ -764,7 +764,7 @@ mean_host_placement = np.mean(percentages)
 initial = [best_type, distinction_level, AVG, *powers, mean_host_placement]
 
 Iterative_rank.loc[0] = initial
-Iterative_rank.to_csv("Values of the best histogram for the given statistic.csv", Header = ["Best type", "Distinction level", "Rank value for distinction", "a", "b", "c", "d", "Mean placement of host galaxy"])
+Iterative_rank.to_csv("Values of the best histogram for the given statistic.csv", header = ["Best type", "Distinction level", "Rank value for distinction", "a", "b", "c", "d", "Mean placement of host galaxy"])
 
 
 elapsed_time = timer() - start # in seconds
