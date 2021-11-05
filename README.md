@@ -1,6 +1,17 @@
 # Yr-4-project-codes
 Coallating the various different codes developed off of David Evans' initial framework. Their are different files relating to different jobs, however the main codes used are the Automating Ranking Stats.py which implements the MCMC algorithm for finding the optimal ranking statistic, and the Testing functions from Ex_within.py which allows specific testing of individual statistics. 
 
+# Dependencies 
+pylab
+numpy
+pandas
+math
+json
+scipy
+astropy
+HEALPix
+timeit
+
 # For Sam
 I have kept the two important scripts that you will need for your research on the home directory (not in any folders).
 
