@@ -18,6 +18,8 @@ The next part of the script takes this best histogram and creates a cumulative p
 
 To use "Testing Specfic Rankings.py" you will need 4 data files, these were too big to upload to github on their own and so I have put them in a zipped folder called "Data files.rar" in the folder Data files, you will need to unzip these files and have them in the same directory as where you run the code (these are information from the GLADE galaxy catalogue and some cumulative luminosity files).
 
+Also to set the range for the inside SGRBs you will have to remove the galaxies that are past a certain luminosity distance in the csv file before you use that data file in either the "HealPix" or the "Testing Speciifc Rankings.py". Unfortunetly I don't not have a code that does this, however it should not be a had code to write.
+
 in the script itself there are a few things that you can alter to change the statistic your testing and number of simulated SGRBs:
 
 On line 17 you can change the number of simulated SGRBs
